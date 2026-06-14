@@ -8,6 +8,8 @@ export const SAMPLE_PHONES: PhoneType[] = [
     slug: "samsung-galaxy-a35-5g",
     price: 82999,
     priceMax: 94999,
+    pricePKR: 82999,
+    priceUSD: 298,
     image: "",
     specs: {
       display: { size: "6.6 inches", type: "Super AMOLED", resolution: "1080 x 2340" },
@@ -24,6 +26,8 @@ export const SAMPLE_PHONES: PhoneType[] = [
     brand: "Infinix",
     slug: "infinix-note-40-pro",
     price: 57999,
+    pricePKR: 57999,
+    priceUSD: 208,
     specs: {
       display: { size: "6.78 inches", type: "AMOLED", resolution: "1080 x 2436" },
       performance: { processor: "MediaTek Helio G99" },
@@ -38,6 +42,8 @@ export const SAMPLE_PHONES: PhoneType[] = [
     brand: "Xiaomi",
     slug: "xiaomi-redmi-note-13-pro",
     price: 56999,
+    pricePKR: 56999,
+    priceUSD: 205,
     specs: {
       display: { size: "6.67 inches", type: "AMOLED", resolution: "1220 x 2712" },
       performance: { processor: "Snapdragon 7s Gen 2" },
@@ -51,6 +57,8 @@ export const SAMPLE_PHONES: PhoneType[] = [
     brand: "Samsung",
     slug: "samsung-galaxy-s24-ultra",
     price: 449999,
+    pricePKR: 449999,
+    priceUSD: 1615,
     specs: {
       display: { size: "6.8 inches", type: "Dynamic AMOLED 2X", resolution: "1440 x 3120" },
       performance: { processor: "Snapdragon 8 Gen 3" },
@@ -65,6 +73,8 @@ export const SAMPLE_PHONES: PhoneType[] = [
     brand: "Apple",
     slug: "apple-iphone-15",
     price: 249999,
+    pricePKR: 249999,
+    priceUSD: 898,
     specs: {
       display: { size: "6.1 inches", type: "Super Retina XDR OLED", resolution: "1179 x 2556" },
       performance: { processor: "Apple A16 Bionic" },
@@ -78,6 +88,8 @@ export const SAMPLE_PHONES: PhoneType[] = [
     brand: "Realme",
     slug: "realme-12-pro-plus-5g",
     price: 99999,
+    pricePKR: 99999,
+    priceUSD: 360,
     specs: {
       display: { size: "6.7 inches", type: "AMOLED", resolution: "1080 x 2412" },
       performance: { processor: "Snapdragon 7s Gen 2" },
@@ -91,6 +103,8 @@ export const SAMPLE_PHONES: PhoneType[] = [
     brand: "Vivo",
     slug: "vivo-v30e",
     price: 74999,
+    pricePKR: 74999,
+    priceUSD: 270,
     specs: {
       display: { size: "6.78 inches", type: "AMOLED", resolution: "1080 x 2400" },
       performance: { processor: "Dimensity 7300" },
@@ -104,6 +118,8 @@ export const SAMPLE_PHONES: PhoneType[] = [
     brand: "Infinix",
     slug: "infinix-smart-8",
     price: 18999,
+    pricePKR: 18999,
+    priceUSD: 68,
     specs: {
       display: { size: "6.6 inches", type: "IPS LCD", resolution: "720 x 1612" },
       performance: { processor: "MediaTek Helio G36" },
@@ -119,10 +135,11 @@ export function filterSamplesByPriceRange(samples: PhoneType[], rangeSlug: strin
   if (!rangeSlug || rangeSlug === 'all') return samples;
 
   return samples.filter((p) => {
-    if (rangeSlug === 'under-20000') return p.price < 20000;
-    if (rangeSlug === '20000-40000') return p.price >= 20000 && p.price < 40000;
-    if (rangeSlug === '40000-80000') return p.price >= 40000 && p.price < 80000;
-    if (rangeSlug === 'above-80000') return p.price >= 80000;
+    const price = (p as any).price ?? p.pricePKR ?? 0;
+    if (rangeSlug === 'under-20000') return price < 20000;
+    if (rangeSlug === '20000-40000') return price >= 20000 && price < 40000;
+    if (rangeSlug === '40000-80000') return price >= 40000 && price < 80000;
+    if (rangeSlug === 'above-80000') return price >= 80000;
     return true;
   });
 }

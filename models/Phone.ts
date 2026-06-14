@@ -7,6 +7,8 @@ export interface IPhone extends Document {
   slug: string;
   pricePKR: number;
   priceUSD: number;
+  price?: number;               // legacy / demo compat
+  priceMax?: number;            // legacy / demo compat
   image?: string;
   releaseDate?: string;
   specs: CleanSpecs;           // Now uses the clean nested structure
@@ -169,6 +171,8 @@ const PhoneSchema = new Schema<IPhone>(
     slug: { type: String, required: true, unique: true, lowercase: true, index: true },
     pricePKR: { type: Number, required: true, min: 0, index: true },
     priceUSD: { type: Number, required: true, min: 0 },
+    price: { type: Number, min: 0 },      // legacy
+    priceMax: { type: Number, min: 0 },   // legacy
     image: String,
     releaseDate: String,
     specs: { type: SpecsSchema, required: true },

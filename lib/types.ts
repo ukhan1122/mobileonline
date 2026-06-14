@@ -98,6 +98,8 @@ export interface Phone {
   slug: string;                 // URL friendly: "samsung-galaxy-a35-5g"
   pricePKR: number;             // Real price in Pakistan (PKR)
   priceUSD: number;             // Approximate international price in USD
+  price?: number;               // Legacy / demo compat (allows old demo data)
+  priceMax?: number;            // Legacy / demo compat (allows old demo data)
   image?: string;               // Image URL or /images/ path
   releaseDate?: string;         // "March 2024" or ISO
   specs: PhoneSpecs;

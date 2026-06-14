@@ -297,14 +297,18 @@ export function cleanMobileSpecs(messyArray: Array<Record<string, any>>): CleanS
     // --- DISPLAY / SCREEN section ---
     if (has(labelContext, 'display', 'screen')) {
       const displayInfo = parseDisplayValue(values);
-      Object.assign(specs.display, displayInfo);
+      if (specs.display) {
+        Object.assign(specs.display, displayInfo);
+      }
 
       // Also try to pick up protection / refresh from nearby rows
       for (let k = i; k < Math.min(i + 3, messyArray.length); k++) {
         const extra = parseDisplayValue(
           Object.values(messyArray[k] || {}).map(norm).filter(Boolean)
         );
-        Object.assign(specs.display, extra);
+        if (specs.display) {
+          Object.assign(specs.display, extra);
+        }
       }
     }
 
@@ -312,13 +316,15 @@ export function cleanMobileSpecs(messyArray: Array<Record<string, any>>): CleanS
     if (has(labelContext, 'memory', 'ram', 'internal', 'storage', 'rom')) {
       for (const v of values) {
         const lower = v.toLowerCase();
-        if (/\d+\s*gb/i.test(v) && (lower.includes('ram') || has(labelContext, 'ram'))) {
-          specs.memory.ram = v.replace(/ram/i, '').trim();
-        } else if (/\d+\s*gb/i.test(v) && !specs.memory!.storage) {
-          specs.memory.storage = v;
-        }
-        if (has(v, 'card', 'slot', 'microsd', 'n/a')) {
-          specs.memory.cardSlot = v;
+        if (specs.memory) {
+          if (/\d+\s*gb/i.test(v) && (lower.includes('ram') || has(labelContext, 'ram'))) {
+            specs.memory.ram = v.replace(/ram/i, '').trim();
+          } else if (/\d+\s*gb/i.test(v) && !specs.memory.storage) {
+            specs.memory.storage = v;
+          }
+          if (has(v, 'card', 'slot', 'microsd', 'n/a')) {
+            specs.memory.cardSlot = v;
+          }
         }
       }
     }
@@ -326,17 +332,19 @@ export function cleanMobileSpecs(messyArray: Array<Record<string, any>>): CleanS
     // --- PERFORMANCE (Processor / GPU) ---
     if (has(labelContext, 'performance', 'processor', 'chipset', 'cpu', 'gpu')) {
       for (const v of values) {
-        if (!specs.performance!.processor && !has(v, 'gpu', 'mali', 'adreno')) {
-          if (has(v, 'mediatek', 'snapdragon', 'dimensity', 'exynos', 'tensor', 'helio', 'unisoc')) {
-            specs.performance.processor = v;
+        if (specs.performance) {
+          if (!specs.performance.processor && !has(v, 'gpu', 'mali', 'adreno')) {
+            if (has(v, 'mediatek', 'snapdragon', 'dimensity', 'exynos', 'tensor', 'helio', 'unisoc')) {
+              specs.performance.processor = v;
+            }
           }
-        }
-        if (has(v, 'mali', 'adreno', 'gpu')) {
-          specs.performance.gpu = v;
+          if (has(v, 'mali', 'adreno', 'gpu')) {
+            specs.performance.gpu = v;
+          }
         }
       }
       // Sometimes processor name is just sitting in a value cell
-      if (!specs.performance.processor) {
+      if (specs.performance && !specs.performance.processor) {
         const proc = values.find(v =>
           has(v, 'mediatek', 'snapdragon', 'dimensity', 'exynos', 'tensor', 'helio')
         );
@@ -346,18 +354,20 @@ export function cleanMobileSpecs(messyArray: Array<Record<string, any>>): CleanS
 
     // --- BATTERY ---
     if (has(labelContext, 'battery')) {
-      const cap = values.find(v => /\d+\s*mAh/i.test(v)) ||
-                  values.find(v => /\d+\s*mAh/i.test(v.toLowerCase()));
-      if (cap) {
-        specs.battery.capacity = cap;
-      } else {
-        const maybeCap = values.find(v => /\d{3,5}/.test(v) && !has(v, 'mp', 'inch'));
-        if (maybeCap) specs.battery.capacity = maybeCap + ' mAh';
-      }
+      if (specs.battery) {
+        const cap = values.find(v => /\d+\s*mAh/i.test(v)) ||
+                    values.find(v => /\d+\s*mAh/i.test(v.toLowerCase()));
+        if (cap) {
+          specs.battery.capacity = cap;
+        } else {
+          const maybeCap = values.find(v => /\d{3,5}/.test(v) && !has(v, 'mp', 'inch'));
+          if (maybeCap) specs.battery.capacity = maybeCap + ' mAh';
+        }
 
-      // Charging
-      const charging = values.find(v => /\d+W|wired|fast|turbo|super|charging/i.test(v) && !has(v, 'battery', 'mah'));
-      if (charging) specs.battery!.charging = charging;
+        // Charging
+        const charging = values.find(v => /\d+W|wired|fast|turbo|super|charging/i.test(v) && !has(v, 'battery', 'mah'));
+        if (charging) specs.battery.charging = charging;
+      }
     }
 
     // --- BODY / DIMENSIONS / BUILD ---
