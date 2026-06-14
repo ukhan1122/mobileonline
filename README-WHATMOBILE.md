@@ -201,15 +201,22 @@ Key fields:
 
 ---
 
-## Adding More Features (Recommended Next Steps)
+## Current State & Next Steps
 
-1. **Admin / Upload phones** — Create protected `/admin` route + form to add/edit phones.
+**Admin / Add Phones:**
+- The "Add Phone" form is currently **development-only** (visible only when `NODE_ENV=development`).
+- On production (Vercel, etc.) the button and page are hidden with a "Restricted Area" message.
+- This provides basic protection without needing a full auth system for a personal project.
+
+**Recommended Next Steps (if you want to extend):**
+
+1. **Full Admin Panel** — Add password protection or NextAuth for a real `/admin` area.
 2. **Price history** — Add a `PriceHistory` model + charts (use recharts or chart.js).
 3. **Compare phones** — `/compare?ids=slug1,slug2`.
-4. **Filters sidebar** on search page (RAM, storage, brand checkboxes).
-5. **Image upload** using UploadThing / Cloudinary.
-6. **Sitemap + SEO** for individual phone and brand pages.
-7. **Real retailer price scraping** (later) or manual data entry.
+4. **Advanced filters** — RAM, storage, camera specs, etc.
+5. **Sitemap + SEO** — Automatic sitemap for all phones and brands.
+6. **Real price scraping** — Pull live prices from local retailers (Jazzy, PriceOye, etc.).
+7. **User accounts / favorites** — Allow users to save phones.
 
 ---
 
@@ -240,6 +247,53 @@ npm run lint
 - All pages use **server components** for direct DB access (fast).
 - Search uses both client form + server filtering.
 - Clean Pakistan market price ranges (common local breakpoints).
+
+---
+
+## Deployment
+
+### Recommended: Deploy on Vercel
+
+This is a standard Next.js project and deploys perfectly on [Vercel](https://vercel.com).
+
+**Steps:**
+
+1. Push your code to GitHub (this repository).
+2. Go to [vercel.com](https://vercel.com) → **New Project** → Import the `mobileonline` repo.
+3. Add the required **Environment Variables** (see table below).
+4. Click **Deploy**.
+
+Vercel will automatically detect the Next.js framework.
+
+### Required Environment Variables
+
+| Variable                    | Description                                      | Required |
+|-----------------------------|--------------------------------------------------|----------|
+| `MONGODB_URI`               | Full MongoDB Atlas connection string             | Yes      |
+| `CLOUDINARY_CLOUD_NAME`     | Your Cloudinary cloud name                       | Yes      |
+| `CLOUDINARY_API_KEY`        | Your Cloudinary API key                          | Yes      |
+| `CLOUDINARY_API_SECRET`     | Your Cloudinary API secret                       | Yes      |
+| `NEXT_PUBLIC_SITE_URL`      | Your production URL (e.g. https://your-app.vercel.app) | Recommended |
+
+> You can use the combined `CLOUDINARY_URL=cloudinary://...` format instead of the three separate variables.
+
+**Important notes for production:**
+- The **Add Phone** functionality is **development-only** (`process.env.NODE_ENV === 'development'`). On production builds it is hidden and the `/add-phone` page shows a "Restricted Area" message. This protects your site from public submissions.
+- Make sure your MongoDB Atlas **Network Access** allows connections from Vercel (add `0.0.0.0/0` for simplicity, or specific Vercel IP ranges).
+- Currency conversion and global pricing work automatically using free public APIs (no extra keys needed).
+
+### Alternative Deployment Platforms
+
+- **Railway** or **Render**: Good alternatives. Set the same environment variables.
+- **Self-hosted**: Use `npm run build && npm start` (you will need to manage MongoDB connection and Cloudinary yourself).
+
+### Running Seed in Production (if needed)
+
+You can run the seed script against your production database:
+
+```bash
+MONGODB_URI=your-production-uri npm run seed
+```
 
 ---
 

@@ -1,9 +1,14 @@
 /**
  * Seed script for WhatMobile clone
  *
- * Usage:
+ * Usage (local):
  *   1. Make sure .env.local has MONGODB_URI
  *   2. Run: npm run seed
+ *
+ * Usage (production / against live DB):
+ *   MONGODB_URI="your-production-uri" npm run seed
+ *
+ * The script now uses pricePKR + priceUSD (global pricing fields).
  *
  * How to add your own real phones:
  *   - Add more objects to the samplePhones array below (copy the structure).
@@ -24,8 +29,8 @@ const samplePhones = [
     name: "Samsung Galaxy A35 5G",
     brand: "Samsung",
     slug: "samsung-galaxy-a35-5g",
-    price: 82999,
-    priceMax: 94999,
+    pricePKR: 82999,
+    priceUSD: 295,
     releaseDate: "March 2024",
     image: "https://picsum.photos/id/1015/400/400",
     specs: {
@@ -49,7 +54,8 @@ const samplePhones = [
     name: "Infinix Note 40 Pro",
     brand: "Infinix",
     slug: "infinix-note-40-pro",
-    price: 57999,
+    pricePKR: 57999,
+    priceUSD: 205,
     releaseDate: "April 2024",
     image: "https://picsum.photos/id/106/400/400",
     specs: {
@@ -71,8 +77,8 @@ const samplePhones = [
     name: "Xiaomi Redmi Note 13 Pro 4G",
     brand: "Xiaomi",
     slug: "xiaomi-redmi-note-13-pro-4g",
-    price: 56999,
-    priceMax: 62999,
+    pricePKR: 56999,
+    priceUSD: 200,
     releaseDate: "January 2024",
     image: "https://picsum.photos/id/160/400/400",
     specs: {
@@ -95,7 +101,8 @@ const samplePhones = [
     name: "Realme 12 Pro+ 5G",
     brand: "Realme",
     slug: "realme-12-pro-plus-5g",
-    price: 99999,
+    pricePKR: 99999,
+    priceUSD: 355,
     releaseDate: "February 2024",
     image: "https://picsum.photos/id/201/400/400",
     specs: {
@@ -117,7 +124,8 @@ const samplePhones = [
     name: "Samsung Galaxy S24 Ultra",
     brand: "Samsung",
     slug: "samsung-galaxy-s24-ultra",
-    price: 449999,
+    pricePKR: 449999,
+    priceUSD: 1600,
     releaseDate: "January 2024",
     image: "https://picsum.photos/id/180/400/400",
     specs: {
@@ -140,7 +148,8 @@ const samplePhones = [
     name: "Apple iPhone 15",
     brand: "Apple",
     slug: "apple-iphone-15",
-    price: 249999,
+    pricePKR: 249999,
+    priceUSD: 890,
     releaseDate: "September 2023",
     image: "https://picsum.photos/id/29/400/400",
     specs: {
@@ -163,7 +172,8 @@ const samplePhones = [
     name: "Vivo V30e",
     brand: "Vivo",
     slug: "vivo-v30e",
-    price: 74999,
+    pricePKR: 74999,
+    priceUSD: 265,
     releaseDate: "May 2024",
     image: "https://picsum.photos/id/251/400/400",
     specs: {
@@ -184,7 +194,8 @@ const samplePhones = [
     name: "Tecno Camon 20 Premier",
     brand: "Tecno",
     slug: "tecno-camon-20-premier",
-    price: 64999,
+    pricePKR: 64999,
+    priceUSD: 230,
     releaseDate: "July 2023",
     image: "https://picsum.photos/id/312/400/400",
     specs: {
