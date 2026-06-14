@@ -1,4 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a **WhatMobile.com.pk** clone built with **Next.js 16 (App Router) + MongoDB Atlas**.
+
+See complete guide and setup instructions: **[README-WHATMOBILE.md](./README-WHATMOBILE.md)**
+
+## Quick Start
+
+```bash
+npm run dev
+npm run seed   # (after setting MONGODB_URI)
+```
+
+Then open http://localhost:3000
+
+Key pages:
+- `/search`
+- `/prices/under-20000`
+- `/phones/samsung-galaxy-a35-5g`
+- `/brands/samsung`
+
 
 ## Getting Started
 
