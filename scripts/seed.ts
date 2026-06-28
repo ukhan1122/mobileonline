@@ -35,10 +35,10 @@ const samplePhones = [
     image: "https://picsum.photos/id/1015/400/400",
     specs: {
       display: { size: "6.6 inches", type: "Super AMOLED", resolution: "1080 x 2340", refreshRate: "120Hz" },
-      processor: "Samsung Exynos 1380",
+      performance: { processor: "Samsung Exynos 1380" },
       camera: { rear: "50 MP (OIS) + 8 MP + 5 MP", front: "13 MP" },
-      battery: "5000 mAh",
-      charging: "25W Fast Charging",
+      battery: { capacity: "5000 mAh", charging: "25W Fast Charging" },
+      body: {},
       os: "Android 14, One UI 6.1",
     },
     variants: [
@@ -60,10 +60,10 @@ const samplePhones = [
     image: "https://picsum.photos/id/106/400/400",
     specs: {
       display: { size: "6.78 inches", type: "AMOLED", resolution: "1080 x 2436", refreshRate: "120Hz" },
-      processor: "MediaTek Helio G99 Ultimate",
+      performance: { processor: "MediaTek Helio G99 Ultimate" },
       camera: { rear: "108 MP + 2 MP", front: "32 MP" },
-      battery: "5000 mAh",
-      charging: "70W Wired + 20W Wireless",
+      battery: { capacity: "5000 mAh", charging: "70W Wired + 20W Wireless" },
+      body: {},
       os: "Android 14, XOS 14.1",
     },
     variants: [
@@ -83,10 +83,10 @@ const samplePhones = [
     image: "https://picsum.photos/id/160/400/400",
     specs: {
       display: { size: "6.67 inches", type: "AMOLED", resolution: "1220 x 2712", refreshRate: "120Hz" },
-      processor: "Qualcomm Snapdragon 7s Gen 2",
+      performance: { processor: "Qualcomm Snapdragon 7s Gen 2" },
       camera: { rear: "200 MP + 8 MP + 2 MP", front: "16 MP" },
-      battery: "5000 mAh",
-      charging: "67W Turbo Charging",
+      battery: { capacity: "5000 mAh", charging: "67W Turbo Charging" },
+      body: {},
       os: "Android 13, MIUI 14 / HyperOS",
     },
     variants: [
@@ -107,10 +107,10 @@ const samplePhones = [
     image: "https://picsum.photos/id/201/400/400",
     specs: {
       display: { size: "6.7 inches", type: "AMOLED", resolution: "1080 x 2412", refreshRate: "120Hz" },
-      processor: "Qualcomm Snapdragon 7s Gen 2",
+      performance: { processor: "Qualcomm Snapdragon 7s Gen 2" },
       camera: { rear: "200 MP Periscope + 8 MP + 2 MP", front: "32 MP" },
-      battery: "5000 mAh",
-      charging: "67W SuperVOOC",
+      battery: { capacity: "5000 mAh", charging: "67W SuperVOOC" },
+      body: {},
       os: "Android 14, Realme UI 5.0",
     },
     variants: [
@@ -130,10 +130,10 @@ const samplePhones = [
     image: "https://picsum.photos/id/180/400/400",
     specs: {
       display: { size: "6.8 inches", type: "Dynamic AMOLED 2X", resolution: "1440 x 3120", refreshRate: "120Hz" },
-      processor: "Qualcomm Snapdragon 8 Gen 3",
+      performance: { processor: "Qualcomm Snapdragon 8 Gen 3" },
       camera: { rear: "200 MP + 50 MP + 12 MP + 10 MP", front: "12 MP" },
-      battery: "5000 mAh",
-      charging: "45W Super Fast Charging",
+      battery: { capacity: "5000 mAh", charging: "45W Super Fast Charging" },
+      body: {},
       os: "Android 14, One UI 6.1",
     },
     variants: [
@@ -154,10 +154,10 @@ const samplePhones = [
     image: "https://picsum.photos/id/29/400/400",
     specs: {
       display: { size: "6.1 inches", type: "Super Retina XDR OLED", resolution: "1179 x 2556", refreshRate: "60Hz" },
-      processor: "Apple A16 Bionic",
+      performance: { processor: "Apple A16 Bionic" },
       camera: { rear: "48 MP + 12 MP", front: "12 MP" },
-      battery: "3349 mAh",
-      charging: "20W Fast Charging",
+      battery: { capacity: "3349 mAh", charging: "20W Fast Charging" },
+      body: {},
       os: "iOS 17 (upgradable to iOS 18)",
     },
     variants: [
@@ -178,10 +178,10 @@ const samplePhones = [
     image: "https://picsum.photos/id/251/400/400",
     specs: {
       display: { size: "6.78 inches", type: "AMOLED", resolution: "1080 x 2400", refreshRate: "120Hz" },
-      processor: "MediaTek Dimensity 7300",
+      performance: { processor: "MediaTek Dimensity 7300" },
       camera: { rear: "50 MP + 8 MP", front: "50 MP" },
-      battery: "5500 mAh",
-      charging: "44W Fast Charging",
+      battery: { capacity: "5500 mAh", charging: "44W Fast Charging" },
+      body: {},
       os: "Android 14, Funtouch OS 14",
     },
     variants: [
@@ -200,10 +200,10 @@ const samplePhones = [
     image: "https://picsum.photos/id/312/400/400",
     specs: {
       display: { size: "6.67 inches", type: "AMOLED", resolution: "1080 x 2400", refreshRate: "120Hz" },
-      processor: "MediaTek Helio G99",
+      performance: { processor: "MediaTek Helio G99" },
       camera: { rear: "108 MP + 50 MP + 2 MP", front: "32 MP" },
-      battery: "5000 mAh",
-      charging: "45W Fast Charging",
+      battery: { capacity: "5000 mAh", charging: "45W Fast Charging" },
+      body: {},
       os: "Android 13, HiOS 13",
     },
     variants: [

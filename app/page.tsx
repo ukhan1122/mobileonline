@@ -41,12 +41,18 @@ async function PhoneResults({
 
     if (dbPhones && dbPhones.length > 0) {
       phones = dbPhones;
+      console.log('✓ Successfully loaded', dbPhones.length, 'phones from MongoDB');
     } else {
       usingDemo = true;
       phones = [...SAMPLE_PHONES];
+      console.warn('⚠ No phones found in MongoDB, using demo data');
     }
   } catch (err) {
-    console.error('Homepage DB fetch failed, using demo data:', err);
+    console.error('❌ Homepage DB fetch failed, using demo data:');
+    console.error(err instanceof Error ? err.message : String(err));
+    if (err instanceof Error && err.stack) {
+      console.error('Stack:', err.stack);
+    }
     usingDemo = true;
     phones = [...SAMPLE_PHONES];
   }

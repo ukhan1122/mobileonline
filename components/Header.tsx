@@ -31,10 +31,10 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <div className="w-9 h-9 bg-emerald-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">WM</span>
+              <span className="text-white font-bold text-xl">OP</span>
             </div>
             <div>
-              <div className="font-bold text-xl tracking-tight text-gray-900">WhatMobile</div>
+              <div className="font-bold text-xl tracking-tight text-gray-900">Ohoprice</div>
               <div className="text-[10px] text-emerald-600 -mt-1">Pakistan</div>
             </div>
           </Link>
