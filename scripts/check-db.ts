@@ -12,7 +12,7 @@ async function run() {
   try {
     console.log('Connecting to', uri.split('@').pop?.() ?? uri);
     const conn = await mongoose.connect(uri, { serverSelectionTimeoutMS: 10000, family: 4 } as any);
-    const dbName = conn.connection.db.databaseName;
+    const dbName = conn.connection.db!.databaseName;
     console.log('Connected DB name:', dbName);
 
     const count = await Phone.countDocuments();

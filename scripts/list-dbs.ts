@@ -9,7 +9,7 @@ async function run() {
   }
   try {
     const conn = await mongoose.connect(uri, { serverSelectionTimeoutMS: 10000, family: 4 } as any);
-    const admin = conn.connection.db.admin();
+    const admin = conn.connection.db!.admin();
     const dbs = await admin.listDatabases();
     console.log('Databases visible to this user:');
     dbs.databases.forEach((d: any) => console.log('-', d.name, `(sizeOnDisk: ${d.sizeOnDisk})`));

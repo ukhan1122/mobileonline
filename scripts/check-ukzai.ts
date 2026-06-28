@@ -9,7 +9,7 @@ async function run() {
   }
   try {
     const conn = await mongoose.connect(uri, { serverSelectionTimeoutMS: 10000, family: 4, dbName: 'ukzaiDB' } as any);
-    const db = conn.connection.db;
+    const db = conn.connection.db!;
     const collections = await db.listCollections().toArray();
     console.log('Collections in ukzaiDB:', collections.map(c => c.name));
     const hasPhones = collections.some(c => c.name === 'phones');
