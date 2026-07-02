@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Toaster from "@/components/Toaster";
+import Script from "next/script"; // ✅ ADD THIS IMPORT
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,24 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-zinc-50 text-gray-900">
+        {/* ✅ ADD THIS: Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-Q2NH9LRHT4"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-Q2NH9LRHT4');
+            `,
+          }}
+        />
+        
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
